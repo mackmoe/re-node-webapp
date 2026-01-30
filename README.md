@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cinematic Scroll Experience
+
+A Next.js 14 web app with bold, scroll-linked animations, parallax backgrounds, and mixed image/video content.
+
+## Features
+
+- **Next.js 14 App Router** with TypeScript
+- **Tailwind CSS** for styling
+- **GSAP + ScrollTrigger** for scroll-linked animations
+- **Lenis** for smooth scrolling
+- **4 Pinned Sections** with:
+  - Bold, hype-driven cinematic motion
+  - Parallax and transforming backgrounds (images & video)
+  - Mixed content animations (fade, slide, scale)
+  - Mobile-optimized wow factor (not simplified, just optimized)
 
 ## Getting Started
 
-First, run the development server:
-
+### Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run Development Server
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── layout.tsx       # Root layout with metadata
+│   ├── page.tsx         # Home page with 4 sections
+│   └── globals.css      # Tailwind styles
+├── components/
+│   └── ScrollSection.tsx # Reusable scroll-pinned section component
+└── context/
+    └── LenisContext.tsx  # Lenis smooth scroll provider
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Lenis Settings
+- Duration: 1.2s
+- Easing: Custom exponential
+- Smooth scrolling on touch and desktop
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### GSAP ScrollTrigger
+- Scrub: 1.2s (smooth animation sync)
+- Parallax on backgrounds (strength varies by device)
+- Content animations: fade, slide, scale (rotate per section)
 
-## Deploy on Vercel
+## Mobile Optimization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Motion is optimized for mobile without removing the cinematic wow factor:
+- Parallax strength reduced (0.3 vs 0.5 on desktop)
+- Sections still pinned behavior optimized
+- Full smooth scroll maintained
+- Bold animations preserved
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization
+
+### Adding Your Own Sections
+1. Create new backgrounds or videos
+2. Add `<ScrollSection>` components with custom content
+3. Adjust animation scrub values and parallax strength as needed
+
+### Changing Motion
+Edit `ScrollSection.tsx`:
+- `scrub` values for faster/slower animations
+- `parallaxStrength` for background movement intensity
+- Animation type selection logic (fade/slide/scale)
+
+## Build for Production
+```bash
+npm run build
+npm run start
+```
+
+---
+
+**Note:** Placeholder media (from Unsplash & public video library) should be replaced with your own assets.
