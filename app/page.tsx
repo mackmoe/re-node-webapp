@@ -289,11 +289,11 @@ export default function Home() {
               <p className="text-sm uppercase tracking-[0.3em] text-white/60">
                 Contact
               </p>
-              <p className="text-base font-semibold">Molove Studio</p>
+              <p className="text-base font-semibold">Maurice Nash LLC</p>
               <p className="text-sm text-white/70">
-                hello@molove.community
+                mo@molovestoshare.com
                 <br />
-                +61 2 5555 1200
+                +1 (252) 646-4981
               </p>
             </div>
             <div className="space-y-3">
@@ -315,10 +315,31 @@ export default function Home() {
               <p className="text-sm uppercase tracking-[0.3em] text-white/60">
                 Social
               </p>
-              <div className="flex flex-col gap-2 text-sm text-white/70">
-                <a href="#">Instagram</a>
-                <a href="#">Vimeo</a>
-                <a href="#">Behance</a>
+              <div className="flex flex-col gap-3 text-sm text-white/70">
+                <a href="#" className="flex items-center gap-2">
+                  <img
+                    src="https://img.freepik.com/premium-psd/instagram-logo-social-media-icon_705838-13489.jpg?semt=ais_hybrid&w=740&q=80"
+                    alt="Instagram"
+                    className="h-5 w-5 rounded-full object-cover"
+                  />
+                  Instagram
+                </a>
+                <a href="#" className="flex items-center gap-2">
+                  <img
+                    src="https://image.similarpng.com/file/similarpng/very-thumbnail/2020/05/Popular-Logo-YouTube-icon-PNG.png"
+                    alt="YouTube"
+                    className="h-5 w-5 rounded-full object-cover"
+                  />
+                  YouTube
+                </a>
+                <a href="#" className="flex items-center gap-2">
+                  <img
+                    src="https://image.similarpng.com/file/similarpng/original-picture/2020/11/Blue-facebook-icon-on-transparent-background-PNG.png"
+                    alt="Facebook"
+                    className="h-5 w-5 rounded-full object-cover"
+                  />
+                  Facebook
+                </a>
               </div>
             </div>
             <div className="space-y-3">
