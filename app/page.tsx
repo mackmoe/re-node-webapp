@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { LenisProvider } from "@/src/context/LenisContext";
 import { HeroSlideshow } from "@/src/components/HeroSlideshow";
 import { AnimatedSection } from "@/src/components/AnimatedSection";
+import { PinnedSection } from "@/src/components/PinnedSection";
+import { ParallaxSection } from "@/src/components/ParallaxSection";
 
 const heroSlides = [
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2000&auto=format&fit=crop",
@@ -110,8 +112,18 @@ export default function Home() {
           </div>
         </section>
 
-        <AnimatedSection animationType="slideUp">
-          <section className="px-6 py-16 md:px-16 md:py-20">
+        <PinnedSection className="min-h-screen relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&auto=format&fit=crop"
+              alt="Modern architecture"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+          
+          <section className="relative z-10 px-6 py-16 md:px-16 md:py-20 flex items-center min-h-screen">
             <div className="max-w-3xl space-y-4">
               <p className="text-sm uppercase tracking-[0.3em] text-white/60">
                 The Vision
@@ -126,9 +138,9 @@ export default function Home() {
               </p>
             </div>
           </section>
-        </AnimatedSection>
+        </PinnedSection>
 
-        <AnimatedSection animationType="scale">
+        <ParallaxSection className="relative z-10 bg-[#0b0b0c]">
           <section className="px-6 pb-16 md:px-16 md:pb-24">
             <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div className="relative min-h-[360px] overflow-hidden rounded-3xl">
@@ -157,7 +169,7 @@ export default function Home() {
               </div>
             </div>
           </section>
-        </AnimatedSection>
+        </ParallaxSection>
 
         <AnimatedSection animationType="slideUp" delay={0.1}>
           <section className="px-6 pb-16 md:px-16 md:pb-24">
