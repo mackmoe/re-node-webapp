@@ -1,11 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { LenisProvider } from "@/src/context/LenisContext";
 import { HeroSlideshow } from "@/src/components/HeroSlideshow";
 import { AnimatedSection } from "@/src/components/AnimatedSection";
 import { PinnedSection } from "@/src/components/PinnedSection";
 import { ParallaxSection } from "@/src/components/ParallaxSection";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const heroSlides = [
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2000&auto=format&fit=crop",
@@ -61,6 +65,56 @@ const galleryImages = [
 export default function Home() {
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const [ctaOpen, setCtaOpen] = useState(false);
+  const visionBgRef = useRef<HTMLDivElement>(null);
+  const visionImage1Ref = useRef<HTMLImageElement>(null);
+  const visionImage2Ref = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (!visionBgRef.current || !visionImage1Ref.current || !visionImage2Ref.current) {
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.set(visionImage2Ref.current, {
+        autoAlpha: 0,
+        scale: 1.01,
+        transformOrigin: "center center",
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: visionBgRef.current,
+          start: "top top",
+          end: "+=100%",
+          scrub: 0.8,
+          markers: false,
+        },
+      });
+
+      // Reveal the second image near the end of the pinned scroll.
+      tl.to(
+        visionImage2Ref.current,
+        {
+          autoAlpha: 1,
+          scale: 1,
+          ease: "none",
+          duration: 0.8,
+        },
+        8,
+      );
+      tl.to(
+        visionImage1Ref.current,
+        {
+          filter: "brightness(0.9)",
+          ease: "none",
+          duration: 0.8,
+        },
+        8,
+      );
+    }, visionBgRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <LenisProvider>
@@ -114,11 +168,18 @@ export default function Home() {
 
         <PinnedSection className="min-h-screen relative overflow-hidden">
           {/* Background Image */}
-          <div className="absolute inset-0">
+          <div ref={visionBgRef} className="absolute inset-0">
             <img
+              ref={visionImage1Ref}
               src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&auto=format&fit=crop"
               alt="Modern architecture"
-              className="w-full h-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <img
+              ref={visionImage2Ref}
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2000&auto=format&fit=crop"
+              alt="Modern building"
+              className="absolute inset-0 h-full w-full object-cover opacity-0"
             />
             <div className="absolute inset-0 bg-black/60" />
           </div>
