@@ -2,11 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { LenisProvider } from "@/src/context/LenisContext";
+import { HeroSlideshow } from "@/src/components/HeroSlideshow";
 
 const heroSlides = [
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2000&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=2000&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1500534314209-a26db0f5f3a9?w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=2000&auto=format&fit=crop",
 ];
 
 const timelineItems = [
@@ -56,11 +59,6 @@ export default function Home() {
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const [ctaOpen, setCtaOpen] = useState(false);
 
-  const heroClasses = useMemo(
-    () => ["hero-slide-1", "hero-slide-2", "hero-slide-3"],
-    []
-  );
-
   return (
     <LenisProvider>
       <div className="bg-[#0b0b0c] text-white">
@@ -90,16 +88,7 @@ export default function Home() {
         )}
 
         <section className="relative min-h-[90vh] w-full overflow-hidden">
-          <div className="absolute inset-0">
-            {heroSlides.map((slide, index) => (
-              <div
-                key={slide}
-                className={`hero-slide ${heroClasses[index]}`}
-                style={{ backgroundImage: `url(${slide})` }}
-              />
-            ))}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black" />
-          </div>
+          <HeroSlideshow slides={heroSlides} interval={5000} />
 
           <div className="relative z-10 flex h-full min-h-[90vh] items-end px-6 pb-16 md:px-16">
             <div className="max-w-2xl space-y-6">
@@ -140,7 +129,7 @@ export default function Home() {
           <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
             <div className="relative min-h-[360px] overflow-hidden rounded-3xl">
               <img
-                src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=1600&auto=format&fit=crop"
+                src="https://images1.apartments.com/i2/JrcbjpOKQs-e1HurMCbwC9idYXh4-GGCKYiaqckpfL8/117/artessa-at-quarry-village-san-antonio-tx-building-photo.jpg?w=1600&auto=format&fit=crop"
                 alt="Lifestyle imagery"
                 className="h-full w-full object-cover"
               />
@@ -169,7 +158,7 @@ export default function Home() {
           <div className="flex flex-col gap-8">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-                A Day At Molove
+                A Day In The Life
               </p>
               <h3 className="text-2xl font-semibold md:text-3xl">
                 A day at the community, captured in scenes.
@@ -355,11 +344,22 @@ export default function Home() {
           </div>
         </footer>
 
+        {/* Static "Say Hello" Link - Top Right */}
+        <div className="fixed top-8 right-8 z-40">
+          <button
+            onClick={() => setCtaOpen(true)}
+            className="text-sm uppercase tracking-[0.3em] text-white/70 hover:text-white transition-colors"
+          >
+            @ say hello
+          </button>
+        </div>
+
         <aside className="hidden lg:block">
-          <div className="pointer-events-none fixed right-8 top-24 w-[320px]">
+          <div className="hidden">
+            {/* Old desktop modal hidden */}
             <div className="pointer-events-auto rounded-3xl border border-white/10 bg-black/80 p-6 shadow-[0_40px_80px_rgba(0,0,0,0.4)] backdrop-blur-md">
               <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                Register Interest
+                Say Hello
               </p>
               <h4 className="mt-2 text-lg font-semibold">Stay in the loop.</h4>
               <form className="mt-4 space-y-3">
@@ -386,12 +386,12 @@ export default function Home() {
           </div>
         </aside>
 
-        <div className="fixed bottom-4 left-4 right-4 z-40 lg:hidden">
+        <div className="hidden lg:block">
           <button
             className="flex w-full items-center justify-between rounded-full border border-white/10 bg-white px-6 py-4 text-xs font-semibold uppercase tracking-[0.25em] text-black"
             onClick={() => setCtaOpen(true)}
           >
-            Register Interest
+            Say Hello
             <span aria-hidden>+</span>
           </button>
         </div>
@@ -402,7 +402,7 @@ export default function Home() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                    Register Interest
+                    Say Hello
                   </p>
                   <h4 className="text-lg font-semibold">Stay in the loop.</h4>
                 </div>
