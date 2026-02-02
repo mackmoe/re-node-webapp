@@ -76,8 +76,7 @@ export default function Home() {
 
     const ctx = gsap.context(() => {
       gsap.set(visionImage2Ref.current, {
-        autoAlpha: 0,
-        scale: 1.01,
+        clipPath: "inset(100% 0% 0% 0%)",
         transformOrigin: "center center",
       });
 
@@ -95,21 +94,20 @@ export default function Home() {
       tl.to(
         visionImage2Ref.current,
         {
-          autoAlpha: 1,
-          scale: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
           ease: "none",
-          duration: 0.8,
+          duration: 2.2,
         },
-        8,
+        4,
       );
       tl.to(
         visionImage1Ref.current,
         {
           filter: "brightness(0.9)",
           ease: "none",
-          duration: 0.8,
+          duration: 2.2,
         },
-        8,
+        4,
       );
     }, visionBgRef);
 
@@ -179,7 +177,7 @@ export default function Home() {
               ref={visionImage2Ref}
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2000&auto=format&fit=crop"
               alt="Modern building"
-              className="absolute inset-0 h-full w-full object-cover opacity-0"
+              className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-black/60" />
           </div>
