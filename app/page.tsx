@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { LenisProvider } from "@/src/context/LenisContext";
 import { HeroSlideshow } from "@/src/components/HeroSlideshow";
+import { AnimatedSection } from "@/src/components/AnimatedSection";
 
 const heroSlides = [
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2000&auto=format&fit=crop",
@@ -109,61 +110,66 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-6 py-16 md:px-16 md:py-20">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-              The Vision
-            </p>
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              A creative lifestyle brochure, not a portal.
-            </h2>
-            <p className="text-base text-white/75 md:text-lg">
-              Designed for makers, collaborators, and quiet optimists — this
-              community layers bold architecture with intimate moments, giving
-              you the space to create, gather, and recharge.
-            </p>
-          </div>
-        </section>
-
-        <section className="px-6 pb-16 md:px-16 md:pb-24">
-          <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative min-h-[360px] overflow-hidden rounded-3xl">
-              <img
-                src="https://images1.apartments.com/i2/JrcbjpOKQs-e1HurMCbwC9idYXh4-GGCKYiaqckpfL8/117/artessa-at-quarry-village-san-antonio-tx-building-photo.jpg?w=1600&auto=format&fit=crop"
-                alt="Lifestyle imagery"
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20" />
-            </div>
-            <div className="flex flex-col justify-center gap-4">
+        <AnimatedSection animationType="slideUp">
+          <section className="px-6 py-16 md:px-16 md:py-20">
+            <div className="max-w-3xl space-y-4">
               <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-                Life & Leisure
+                The Vision
               </p>
-              <h3 className="text-2xl font-semibold md:text-3xl">
-                A place that moves with your tempo.
-              </h3>
-              <p className="text-base text-white/75">
-                Rooftop gardens, maker studios, and a resident gallery cultivate
-                a daily mood of experimentation. Every detail is curated for
-                rhythm, light, and human connection.
+              <h2 className="text-3xl font-semibold md:text-4xl">
+                A creative lifestyle brochure, not a portal.
+              </h2>
+              <p className="text-base text-white/75 md:text-lg">
+                Designed for makers, collaborators, and quiet optimists — this
+                community layers bold architecture with intimate moments, giving
+                you the space to create, gather, and recharge.
               </p>
-              <div className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-white/80">
-                Explore the lifestyle <span aria-hidden>→</span>
+            </div>
+          </section>
+        </AnimatedSection>
+
+        <AnimatedSection animationType="scale">
+          <section className="px-6 pb-16 md:px-16 md:pb-24">
+            <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative min-h-[360px] overflow-hidden rounded-3xl">
+                <img
+                  src="https://images1.apartments.com/i2/JrcbjpOKQs-e1HurMCbwC9idYXh4-GGCKYiaqckpfL8/117/artessa-at-quarry-village-san-antonio-tx-building-photo.jpg?w=1600&auto=format&fit=crop"
+                  alt="Lifestyle imagery"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/20" />
+              </div>
+              <div className="flex flex-col justify-center gap-4">
+                <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+                  Life & Leisure
+                </p>
+                <h3 className="text-2xl font-semibold md:text-3xl">
+                  A place that moves with your tempo.
+                </h3>
+                <p className="text-base text-white/75">
+                  Rooftop gardens, maker studios, and a resident gallery cultivate
+                  a daily mood of experimentation. Every detail is curated for
+                  rhythm, light, and human connection.
+                </p>
+                <div className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-white/80">
+                  Explore the lifestyle <span aria-hidden>→</span>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </AnimatedSection>
 
-        <section className="px-6 pb-16 md:px-16 md:pb-24">
-          <div className="flex flex-col gap-8">
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-                A Day In The Life
-              </p>
-              <h3 className="text-2xl font-semibold md:text-3xl">
-                A day at the community, captured in scenes.
-              </h3>
-            </div>
+        <AnimatedSection animationType="slideUp" delay={0.1}>
+          <section className="px-6 pb-16 md:px-16 md:pb-24">
+            <div className="flex flex-col gap-8">
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+                  A Day In The Life
+                </p>
+                <h3 className="text-2xl font-semibold md:text-3xl">
+                  A day at the community, captured in scenes.
+                </h3>
+              </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {timelineItems.map((item) => (
                 <div
@@ -191,9 +197,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </AnimatedSection>
 
-        <section className="px-6 pb-16 md:px-16 md:pb-24">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12">
+        <AnimatedSection animationType="slideUp" delay={0.15}>
+          <section className="px-6 pb-16 md:px-16 md:pb-24">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12">
             <div className="flex flex-col gap-8">
               <div>
                 <p className="text-sm uppercase tracking-[0.3em] text-white/60">
@@ -243,13 +251,15 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </AnimatedSection>
 
-        <section className="px-6 pb-20 md:px-16 md:pb-28">
-          <div className="flex flex-col gap-8">
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-                Social Gallery
-              </p>
+        <AnimatedSection animationType="fade" delay={0.2}>
+          <section className="px-6 pb-20 md:px-16 md:pb-28">
+            <div className="flex flex-col gap-8">
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+                  Social Gallery
+                </p>
               <h3 className="text-2xl font-semibold md:text-3xl">
                 Everyday moments, curated like a gallery wall.
               </h3>
@@ -271,6 +281,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </AnimatedSection>
 
         <footer className="border-t border-white/10 px-6 py-12 md:px-16">
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
